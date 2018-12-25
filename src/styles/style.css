@@ -108,3 +108,15 @@ input:focus {
 .dishes {
   margin: auto;
 }
+
+.validation-sec {
+  display: block;
+}
+
+.e-dish {
+  float: left;
+}
+
+.e-servings {
+  float: right;
+}

@@ -33,7 +33,7 @@ export class Step1 extends Component {
   validate = (meal, numberOfPeople) => {
     return {
       meal: !this.meals.includes(meal),
-      numberOfPeople: !numberOfPeople >= 1
+      numberOfPeople: !numberOfPeople >= 1 || numberOfPeople >= 10
     };
   };
 
@@ -76,7 +76,7 @@ export class Step1 extends Component {
         <h3>Please Enter Number of people</h3>
         <br />
         {shouldMarkError("numberOfPeople") && (
-          <p className="error">You didn't choose a number!</p>
+          <p className="error">You should choose the number less than 10!</p>
         )}
         <input
           onBlur={this.handleBlur("numberOfPeople")}

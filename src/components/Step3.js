@@ -33,13 +33,34 @@ export class Step3 extends Component {
     this.props.prevStep();
   };
 
+  // For validations
+  handleBlur = field => evt => {
+    this.setState({
+      touched: { ...this.state.touched, [field]: true }
+    });
+  };
+
+  validate = (dishes) => {
+    const dishStatus = dishes.reduce((result, dish) => result && !!dish.dish, true);
+    const servingsStatus = dishes.reduce((result, dish) => 
+      result && !!dish.servings , true);
+    return {
+      dish: dishStatus,
+      servings: servingsStatus
+    };
+  };
+
   render() {
     const { handleChange, addDish, removeDish } = this.props;
     const { step, dishes, numberOfPeople } = this.props;
-    const totalDishCount = dishes.reduce((sum, dish, index) => { 
+    const totalDishCount = dishes.reduce((sum, dish) => { 
       return sum += Number(dish.servings)
     } , 0)
     const isEnabled = totalDishCount >= Number(numberOfPeople) ? true : false
+    const errors = this.validate(dishes);
+    const shouldMarkError = field => {
+      return !errors[field] && this.state.touched[field];
+    };
 
     return (
       <div>
@@ -50,7 +71,14 @@ export class Step3 extends Component {
             <h3>Please enter no. of servings</h3>
           </div>
           <br />
-
+          <div className="validation-sec">
+            {shouldMarkError("dish") && (
+              <p className="error e-dish">You didn't select a dishes!</p>
+            )}
+            {shouldMarkError("servings") && (
+              <p className="error e-servings">You didn't select a servings!</p>
+            )}
+          </div>
           {/* Dynamic Form */}
 
           {dishes.map((val, index) => {
@@ -58,11 +86,9 @@ export class Step3 extends Component {
               servingsId = `servings-${index}`;
             return (
               <div key={index}>
-                {
-                  isEnabled ? ('') : (<div style={{color: 'red'}}>Dish count over flow</div>)
-                }
                 <label htmlFor={dishId}>{`Dish #${index + 1}`}</label>
                 <input
+                  onBlur={this.handleBlur("dish")}
                   onChange={handleChange("dish")}
                   value={dishes[index].dish}
                   list="dishes"
@@ -81,6 +107,7 @@ export class Step3 extends Component {
                 </datalist>
                 <label htmlFor={servingsId}>Servings</label>
                 <input
+                  onBlur={this.handleBlur("servings")}
                   onChange={handleChange("servings")}
                   value={dishes[index].servings}
                   type="number"
