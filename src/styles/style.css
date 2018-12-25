@@ -1,0 +1,110 @@
+label {
+  font-weight: lighter;
+  margin: 30px;
+  color: #2b4fab;
+}
+
+h3 {
+  font-weight: bold;
+  color: #2b4fab;
+}
+
+
+button {
+  color: rgb(255, 255, 255);
+  border-radius: 4px;
+  padding: 12px 40px;
+  font-size: 20px;
+  outline: none;
+  background: linear-gradient(to right, rgb(11, 110, 222), rgb(7, 86, 175));
+}
+
+button:hover {
+  background: rgb(255, 255, 255);
+  color: #0b6ede;
+  margin: -2px;
+  border: 2px solid #0b6ede;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+}
+
+button.remove-button {
+  color: white;
+  font-size: 20px;
+  padding: 5px 12px;
+  margin: 30px;
+  border: 2px solid white;
+  border-radius: 100%;
+  background-color: red;
+}
+
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.add-button button {
+  color: white !important;
+  background-color: rgb(8, 184, 243) !important;
+  border: none !important;
+  margin: -2px;
+}
+
+
+.titles {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+input {
+  margin-bottom: 16px;
+  font-size: 15px;
+  font-weight: lighter;
+  padding: 12px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(221, 221, 221);
+  border-radius: 4px;
+}
+
+input:focus {
+  border: 1px solid lightblue;
+  outline: none;
+}
+
+.final-text {
+  color: #2b4fab;
+  line-height: 1.2;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.image {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.step3-container {
+  display: flex;
+  width: 800px;
+  margin: auto;
+  flex-direction: column;
+}
+
+.review {
+  font-size: 20px;
+  font-weight: 300;
+  width: 400px;
+  padding: 30px;
+  margin: auto;
+}
+
+.dishes {
+  margin: auto;
+}
